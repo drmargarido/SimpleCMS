@@ -3,23 +3,18 @@ import sys
 import os.path
 import re
 from django.core.management.base import BaseCommand, CommandError
-from manager.models import Template
+from manager.models import Template, Article
 
 DETECT_AREAS_REGEX = re.compile("\[\[\s*([0-9a-zA-Z_\-]+)\s*\]\]", re.DOTALL)
 
-def usage():
-	print("python register_template.py <template_path> <template_name>")
-	return
-
 class Command(BaseCommand):
-	help = 'Register a new template in the easy_cms database'
+	help = 'Update the template areas'
 
 	def add_arguments(self, parser):
-		parser.add_argument("template_path", nargs="+", type=str)
 		parser.add_argument('template_name', nargs='+', type=str)
 
 	def handle(self, *args, **options):
-		if options['template_path'] and options['template_name']:
+		if options['template_name']:
 
 			# Check if the received path is a file
 			if not os.path.isfile(options['template_path'][0]):
@@ -35,18 +30,25 @@ class Command(BaseCommand):
 				for area in re.findall(DETECT_AREAS_REGEX, template.read()):
 					areas.append(area)
 
-			# Create template
+			# Get template
 			try:
-				template = Template.objects.create(
-					name=options["template_name"][0],
-					file_path=options["template_path"][0]
-				)
+				template = Template.objects.get(name=options["template_name"][0])
 			except Exception:
 				raise CommandError("Cannot create the template")
 
-			# Register the template areas
+			template_areas = [area.name for area in template.extendable_areas.all()]
+
+			template_articles = Article.objects.filter(template=template)
+			
+			# Register new areas in the html template areas
 			for area in areas:
-				template.extendable_areas.create(name=area)
+				if area not in template_areas:
+					new_area = template.extendable_areas.create(name=area)
+					self.stdout.write('Added area "%s"' % new_area.name)		
+
+					# Register new area in the template articles
+					for article in template_articles:
+						content_areas.create(area=new_area, content="")
 
 			template.save()
-			self.stdout.write('Successfully created template "%s"' % template.name)
+			self.stdout.write('Successfully updated template "%s"' % template.name)

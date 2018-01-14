@@ -29,13 +29,12 @@ class ArticleArea(models.Model):
 	content = models.TextField()
 
 class Article(models.Model):
-	author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 	template = models.ForeignKey(Template, on_delete=models.SET_NULL, null=True)
 	content_areas = models.ManyToManyField(ArticleArea)
 	title = models.CharField(max_length=150, blank=False, null=False)
 	creation_date = models.DateTimeField(auto_now_add=True, editable=False)
 	accesses_count = models.IntegerField(default=0)
-	link = models.CharField(max_length=150, blank=False)
+	link = models.CharField(unique=True, max_length=300, blank=False)
 
 	def get_article_page():
 		article_html = ""
