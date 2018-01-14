@@ -11,9 +11,10 @@ Simple CMS is for you if:
 2. Create scripts to parse the Template and detect the relevant areas __[x]__
 3. Insert the Template and the Article associated with the template in the database __[x]__
 4. Parse the Specific area tag [[ Area ]] and insert the article content in it while serving the articles __[x]__
-5. Present a simple UI to manage the templates creation, update and removal []
-6. Present a simple UI to manage the articles creation, update and removal []
-7. Present a simple UI to write the articles content by area []
+5. Use the articles defined links instead of the article id in the url mapping []
+6. Present a simple UI to manage the templates creation, update and removal []
+7. Present a simple UI to manage the articles creation, update and removal []
+8. Present a simple UI to write the articles content by area []
 
 ## Setup
 
@@ -63,3 +64,23 @@ So some simple scripts have been added to the manage.py of the project in order 
 ```sh
 	python manage.py remove_article <article_id>
 ```
+
+* Run the development server
+```sh
+	python manage.py runserver
+```
+
+## Workflow
+
+1. Create a html template using the django template tags
+2. Add the SimpleCMS tags in the final template with a name for each area [[ Area ]], [[ Other Area ]]
+3. Run the script Add new template command
+4. Run the add new article command for each of the wanted articles using the created template name
+5. Go to the django admin dashboard at /admin/manager/
+6. Go to the ArticleAreas and edit the content of each of the wanted areas
+7. Access the article template by id like 127.0.0.1:8000/1/
+
+## Deploy
+
+* To deploy the application the django server is not suitable, use something like django + uwsgi + nginx ->
+[link](https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
