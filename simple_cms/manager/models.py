@@ -6,11 +6,23 @@ from django.db import models
 class Area(models.Model):
 	name = models.CharField(max_length=50, null=False, blank=False)
 
+	def __str__(self):
+		return self.__unicode__()
+
+	def __unicode__(self):
+		return self.template_set.all()[0].name + " -> " + self.name
+
 class Template(models.Model):
 	name = models.CharField(max_length=150, unique=True)
 	extendable_areas = models.ManyToManyField(Area)
 	file_path = models.CharField(max_length=200)
 	creation_date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return self.__unicode__()
+
+	def __unicode__(self):
+		return self.name + " -> " + self.file_path 
 
 class ArticleArea(models.Model):
 	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
