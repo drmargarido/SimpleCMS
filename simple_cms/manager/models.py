@@ -28,6 +28,12 @@ class ArticleArea(models.Model):
 	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
 	content = models.TextField()
 
+	def __str__(self):
+		return self.__unicode__()
+
+	def __unicode__(self):
+		return self.article_set.all()[0].title + " -> " + self.area.name 
+
 class Article(models.Model):
 	template = models.ForeignKey(Template, on_delete=models.SET_NULL, null=True)
 	content_areas = models.ManyToManyField(ArticleArea)
@@ -40,3 +46,9 @@ class Article(models.Model):
 		article_html = ""
 		template = render_to_string(article.template.file_path, request=request, context={})
 		return article_html
+
+	def __str__(self):
+		return self.__unicode__()
+
+	def __unicode__(self):
+		return self.template.name + " -> " + self.title
