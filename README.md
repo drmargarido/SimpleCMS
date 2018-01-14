@@ -7,14 +7,14 @@ Simple CMS is for you if:
 * Know well HTML/CSS/JS
 
 ## Milestones:
-1. Create Initial Models to represent the Templates and Articles __[x]__
-2. Create scripts to parse the Template and detect the relevant areas __[x]__
+1. ~~Create Initial Models to represent the Templates and Articles~~ __[x]__
+2. ~~Create scripts to parse the Template and detect the relevant areas~~ __[x]__
 3. Insert the Template and the Article associated with the template in the database __[x]__
 4. Parse the Specific area tag [[ Area ]] and insert the article content in it while serving the articles __[x]__
-5. Use the articles defined links instead of the article id in the url mapping []
-6. Present a simple UI to manage the templates creation, update and removal []
-7. Present a simple UI to manage the articles creation, update and removal []
-8. Present a simple UI to write the articles content by area []
+5. Use the articles defined links instead of the article id in the url mapping __[ ]__
+6. Present a simple UI to manage the templates creation, update and removal __[ ]__
+7. Present a simple UI to manage the articles creation, update and removal __[ ]__
+8. Present a simple UI to write the articles content by area __[ ]__
 
 ## Setup
 
