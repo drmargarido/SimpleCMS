@@ -1,6 +1,6 @@
 from django.urls import path
-from manager.views import initial_page
+from manager.views import article_page
 
 urlpatterns = [
-	path("", initial_page)
+	path("<int:article_id>/", article_page),
 ]

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.template.loader import render_to_string
 
 # Create your models here.
 
@@ -34,6 +35,9 @@ class ArticleArea(models.Model):
 	def __unicode__(self):
 		return self.article_set.all()[0].title + " -> " + self.area.name 
 
+
+DETECT_AREAS_REGEX = re.compile("\[\[\s*([0-9a-zA-Z_\-]+)\s*\]\]", re.DOTALL)
+
 class Article(models.Model):
 	template = models.ForeignKey(Template, on_delete=models.SET_NULL, null=True)
 	content_areas = models.ManyToManyField(ArticleArea)
@@ -42,10 +46,11 @@ class Article(models.Model):
 	accesses_count = models.IntegerField(default=0)
 	link = models.CharField(unique=True, max_length=300, blank=False)
 
-	def get_article_page():
+	def get_article_page(self):
 		article_html = ""
-		template = render_to_string(article.template.file_path, request=request, context={})
-		return article_html
+		template = render_to_string(self.template.file_path)
+
+		return template
 
 	def __str__(self):
 		return self.__unicode__()

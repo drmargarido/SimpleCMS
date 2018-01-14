@@ -1,14 +1,11 @@
 from django.shortcuts import render
-
-# Create your views here.
-
-def initial_page(request):
-	return render(request, "templates/index.html", {})
+from django.http import HttpResponse
+from manager.models import Article
 
 def article_page(request, article_id):
 	try:
-		article = Article.objects.get(article_id)
+		article = Article.objects.get(id=int(article_id))
 	except Exception:
-		return render(request, "", {})
+		return HttpResponse(status=404, content="404 Article not found")
 
-	return render()
+	return HttpResponse(article.get_article_page())
