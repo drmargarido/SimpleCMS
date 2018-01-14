@@ -11,7 +11,6 @@ class Template(models.Model):
 	extendable_areas = models.ManyToManyField(Area)
 	file_path = models.CharField(max_length=200)
 	creation_date = models.DateTimeField(auto_now_add=True)
-	author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
 class ArticleArea(models.Model):
 	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
@@ -19,8 +18,14 @@ class ArticleArea(models.Model):
 
 class Article(models.Model):
 	author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-	template = models.ManyToManyField(ArticleArea)
+	template = models.ForeignKey(Template, on_delete=models.SET_NULL, null=True)
+	content_areas = models.ManyToManyField(ArticleArea)
 	title = models.CharField(max_length=150, blank=False, null=False)
 	creation_date = models.DateTimeField(auto_now_add=True, editable=False)
 	accesses_count = models.IntegerField(default=0)
 	link = models.CharField(max_length=150, blank=False)
+
+	def get_article_page():
+		article_html = ""
+		template = render_to_string(article.template.file_path, request=request, context={})
+		return article_html
