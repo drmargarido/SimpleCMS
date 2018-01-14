@@ -1,6 +1,6 @@
 from django.urls import path
-from views import 
+from manager.views import initial_page
 
 urlpatterns = [
- 
+	path("index/", initial_page)
 ]
