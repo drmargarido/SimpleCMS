@@ -9,3 +9,11 @@ def article_page(request, article_id):
 		return HttpResponse(status=404, content="404 Article not found")
 
 	return HttpResponse(article.get_article_page())
+
+def article_page_by_link(request, link):
+	try:
+		article = Article.objects.get(link=link)
+	except Exception:
+		return HttpResponse(status=404, content="404 Article not found")
+
+	return HttpResponse(article.get_article_page())		
