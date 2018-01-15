@@ -3,7 +3,6 @@
 Simple CMS is for you if:
 * You do not want to make everything from scratch
 * Are tired of the cms that will always force you some templates that do not allow you to customize everything as you want
-* Want something more secure than the big CMS
 * Know well HTML/CSS/JS
 
 ## Milestones:
@@ -82,5 +81,6 @@ So some simple scripts have been added to the manage.py of the project in order 
 
 ## Deploy
 
-* To deploy the application the django server is not suitable, use something like django + uwsgi + nginx ->
+* Django changes in the application before deploy [link](https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/)
+* To deploy the application the django server is not suitable, use something like django + uwsgi + nginx 
 [link](https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
