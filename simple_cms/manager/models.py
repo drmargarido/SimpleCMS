@@ -14,6 +14,12 @@ class Area(models.Model):
 	def __unicode__(self):
 		return self.template_set.all()[0].name + " -> " + self.name
 
+	def as_json(self):
+		return {
+			"id": str(self.id),
+			"name": self.name
+		}
+
 class Template(models.Model):
 	name = models.CharField(max_length=150, unique=True)
 	extendable_areas = models.ManyToManyField(Area)
@@ -24,7 +30,15 @@ class Template(models.Model):
 		return self.__unicode__()
 
 	def __unicode__(self):
-		return self.name + " -> " + self.file_path 
+		return self.name + " -> " + self.file_path
+
+	def as_json(self):
+		return {
+			"id": str(self.id),
+			"name": self.name,
+			"path": self.file_path,
+			"areas": [area.as_json() for area in self.extendable_areas.all()]
+		}
 
 class ArticleArea(models.Model):
 	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
@@ -36,6 +50,12 @@ class ArticleArea(models.Model):
 	def __unicode__(self):
 		return self.article_set.all()[0].title + " -> " + self.area.name 
 
+	def as_json(self):
+		return {
+			"id": str(self.id),
+			"content": self.content,
+			"area": self.area.as_json()
+		}
 
 DETECT_AREAS_REGEX = re.compile("\[\[\s*([0-9a-zA-Z_\-]+)\s*\]\]", re.DOTALL)
 
@@ -67,3 +87,14 @@ class Article(models.Model):
 
 	def __unicode__(self):
 		return self.template.name + " -> " + self.title
+
+	def as_json(self):
+		return {
+			"id": str(self.id),
+			"template": self.template.name,
+			"content_areas": [area.as_json() for area in self.content_areas.all()],
+			"title": self.title,
+			"creation_date": str(self.creation_date),
+			"accesses_count": str(self.accesses_count),
+			"link": self.link
+		}

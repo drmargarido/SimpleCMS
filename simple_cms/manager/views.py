@@ -2,6 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from manager.models import Article
 
+def index_page(request):
+	return render(request, "manager/index.html", {})
+
+def dashboard_page(request):
+	return render(request, "manager/dashboard.html", {})
+
+def edit_article_page(request, article_id):
+	return render(request, "manager/article.html", {})
+
 def article_page(request, article_id):
 	try:
 		article = Article.objects.get(id=int(article_id))
