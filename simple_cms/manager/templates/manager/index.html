@@ -1,23 +1,39 @@
 {% extends "manager/base_page.html" %}
 
+{% block header %}
+{{ block.super }}
+
+<style type="text/css">
+	#articles_area {
+		text-align: center;
+		margin-top: 2%;
+	}
+
+	#article_list a {
+		font-size: 125%;
+	}
+</style>
+
+{% endblock %}
+
 {% block body %}
 
 {{ block.super }}
 
+	<div id="articles_area">
+		<h2>Articles</h2>
 
-	<a href="https://lwn.net/">link name</a>
-	is a link to another nifty site
-	
-	<h1>this is a header</h1>
+		<div id="article_list"></div>
+	</div>
 
-	<h2>this is a medium header</h2>
+{% endblock %}
 
-	send me mail at <a href="mailto:support@yourcompany.com">
-	support@yourcompany.com</a>.
+{% block script %}
 
-	<p> this is a new paragraph!</p>
-	<p> <b>this is a new paragraph!</b></p>
-	<br> 
-	<b><i>this is a new sentence without a paragraph break, in bold italics.</i></b>
-
+{{block.super}}
+<script src="/static/manager/js/article_list.js"></script>
+<script type="text/javascript">
+	article_list = new ArticleList($("#article_list"));
+	article_list.update();
+</script>
 {% endblock %}

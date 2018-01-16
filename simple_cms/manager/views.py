@@ -1,15 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from manager.models import Article
 
 def index_page(request):
 	return render(request, "manager/index.html", {})
 
+
 def dashboard_page(request):
 	return render(request, "manager/dashboard.html", {})
 
+
 def edit_article_page(request, article_id):
 	return render(request, "manager/article.html", {})
+
 
 def article_page(request, article_id):
 	try:
@@ -19,10 +22,18 @@ def article_page(request, article_id):
 
 	return HttpResponse(article.get_article_page())
 
+
 def article_page_by_link(request, link):
 	try:
 		article = Article.objects.get(link=link)
 	except Exception:
 		return HttpResponse(status=404, content="404 Article not found")
 
-	return HttpResponse(article.get_article_page())		
+	return HttpResponse(article.get_article_page())
+
+
+def get_articles(request):
+	return JsonResponse({
+			"articles": [article.as_json() for article in Article.objects.all()]
+		}
+	)

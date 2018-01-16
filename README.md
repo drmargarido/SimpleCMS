@@ -11,11 +11,12 @@ Simple CMS is for you if:
 3. Insert the Template and the Article associated with the template in the database __[x]__
 4. Parse the Specific area tag [[ Area ]] and insert the article content in it while serving the articles __[x]__
 5. Use the articles defined links instead of the article id in the url mapping __[x]__
-6. Present a simple UI to manage the templates creation, update and removal __[ ]__
-7. Present a simple UI to manage the articles creation, update and removal __[ ]__
-8. Present a simple UI to write the articles content by area __[ ]__
-9. Add simple image upload to the cms __[ ]__
-10. Add uploaded images selector to insert them in the articles writing area __[ ]__ 
+6. Add initial page where all the registered articles are shown, with a link to their page __[x]__
+7. Present a simple UI to manage the templates creation, update and removal __[ ]__
+8. Present a simple UI to manage the articles creation, update and removal __[ ]__
+9. Present a simple UI to write the articles content by area __[ ]__
+10. Add simple image upload to the cms __[ ]__
+11. Add uploaded images selector to insert them in the articles writing area __[ ]__ 
 
 ## Setup
 
