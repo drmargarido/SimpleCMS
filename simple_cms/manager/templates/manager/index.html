@@ -1,25 +1,23 @@
-<html>
+{% extends "manager/base_page.html" %}
 
-	<head>
-		<title>your title here</title>
-	</head>
+{% block body %}
 
-	<body bgcolor="CFCFCF">
-		<a href="https://lwn.net/">link name</a>
-		is a link to another nifty site
-		
-		<h1>this is a header</h1>
+{{ block.super }}
 
-		<h2>this is a medium header</h2>
 
-		send me mail at <a href="mailto:support@yourcompany.com">
-		support@yourcompany.com</a>.
+	<a href="https://lwn.net/">link name</a>
+	is a link to another nifty site
+	
+	<h1>this is a header</h1>
 
-		<p> this is a new paragraph!</p>
-		<p> <b>this is a new paragraph!</b></p>
-		<br> 
-		<b><i>this is a new sentence without a paragraph break, in bold italics.</i></b>
+	<h2>this is a medium header</h2>
 
-	</body>
+	send me mail at <a href="mailto:support@yourcompany.com">
+	support@yourcompany.com</a>.
 
-</html> 
+	<p> this is a new paragraph!</p>
+	<p> <b>this is a new paragraph!</b></p>
+	<br> 
+	<b><i>this is a new sentence without a paragraph break, in bold italics.</i></b>
+
+{% endblock %}
