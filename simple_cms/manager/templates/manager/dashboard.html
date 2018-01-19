@@ -1,1 +1,98 @@
-<html></html>
+{% extends "manager/base_page.html" %}
+
+{% block header %}
+<link href="/static/manager/css/datatables.min.css" rel="stylesheet">
+<style type="text/css">
+	.panel-heading {
+		text-align:center;
+	}
+
+	.row {
+		margin: 5px;
+	}
+
+	.panel-heading {
+		position: relative;
+	}
+
+	#add_new_template_button {
+		position: absolute;
+		right: 1.5%;
+		bottom: 22%;
+	}
+
+	.panel_title {
+		font-size: 200%;
+	}
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<div class="row" id="select_filter">
+			<div>
+				<button class="select_table_button col-md-6">Templates</button>
+				<button class="select_table_button col-md-6">Articles</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="panel panel-default">
+				<!-- Default panel contents -->
+				<div class="panel-heading">
+					<span class="panel_title">Templates<span>
+					<button id="add_new_template_button" class="btn btn-success">Add Template</button>
+				</div>
+				
+				<div class="panel-body">
+
+					<table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">	
+				        <thead>
+				            <tr>
+				                <th>Name</th>
+				                <th>Position</th>
+				                <th>Office</th>
+				                <th>Age</th>
+				                <th>Start date</th>
+				                <th>Salary</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+				            <tr>
+				                <td>Tiger Nixon</td>
+				                <td>System Architect</td>
+				                <td>Edinburgh</td>
+				                <td>61</td>
+				                <td>2011/04/25</td>
+				                <td>$320,800</td>
+				            </tr>
+				            <tr>
+				                <td>Garrett Winters</td>
+				                <td>Accountant</td>
+				                <td>Tokyo</td>
+				                <td>63</td>
+				                <td>2011/07/25</td>
+				                <td>$170,750</td>
+				            </tr>
+				           </tr>
+				        </tbody>
+				    </table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}
+
+{% block script %}
+<script src="/static/manager/js/datatables.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#example').DataTable();
+	});
+</script>
+{% endblock %}

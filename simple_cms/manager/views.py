@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from manager.models import Article
 
+
 def index_page(request):
 	return render(request, "manager/index.html", {})
 

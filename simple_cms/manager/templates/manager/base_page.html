@@ -23,16 +23,16 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">SimpleCMS</a>
+          <a class="navbar-brand" href="/">SimpleCMS</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-         	<a id="dashboard" href="/dashboard/">Dashboard</a>
+        <div class="navbar-collapse collapse">
+         	<a id="dashboard" href="/dashboard/">Management Dashboard</a>
         </div>
       </div>
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <div id="main_container" class="jumbotron">
       <div class="container">
     	{% block body %}
     
@@ -45,7 +45,7 @@
 
       	{% block footer %}
 		{% endblock %}
-        <p>2016, SimpleCMS.</p>
+        <p>2018, SimpleCMS.</p>
       </footer>
     </div> <!-- /container -->
 

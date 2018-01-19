@@ -1,12 +1,10 @@
 {% extends "manager/base_page.html" %}
 
 {% block header %}
-{{ block.super }}
 
 <style type="text/css">
 	#articles_area {
 		text-align: center;
-		margin-top: 2%;
 	}
 
 	#article_list a {
@@ -18,11 +16,7 @@
 
 {% block body %}
 
-{{ block.super }}
-
 	<div id="articles_area">
-		<h2>Articles</h2>
-
 		<div id="article_list"></div>
 	</div>
 
@@ -30,7 +24,6 @@
 
 {% block script %}
 
-{{block.super}}
 <script src="/static/manager/js/article_list.js"></script>
 <script type="text/javascript">
 	article_list = new ArticleList($("#article_list"));

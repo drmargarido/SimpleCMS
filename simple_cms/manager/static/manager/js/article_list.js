@@ -19,14 +19,22 @@ function ArticleList(container){
 	}
 
 	this.render = function(){
-		var article_list_html = "<ul>";
+		var article_list = "";
 
 		for (var i = 0; i < self.content["articles"].length; i++) {
-			article_list_html += "<li><a href='/" + self.content["articles"][i]["link"] + "'>" + self.content["articles"][i]["title"] + "</a></li>";
+			article_list += "<tr><td><a href='/" + self.content["articles"][i]["link"] + "'>" + self.content["articles"][i]["title"] + "</a></td></tr>";
 		}
 
-		article_list_html += "</ul>";
+		var article_list_final = "<div class=\"panel panel-default\">"
+		  + "<div class=\"panel-heading\"><h2>Available Articles</h2></div>" 
+		  + "<table class=\"table\">"
+			+ "<tbody>"
+		    	+ article_list
+		    + "</tbody>"
+		  + "</table>"
+		+ "</div>";
+
 		this.container.empty();
-		this.container.append(article_list_html);
+		this.container.append(article_list_final);
 	}
 }
