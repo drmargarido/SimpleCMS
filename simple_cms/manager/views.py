@@ -4,7 +4,7 @@ from manager.models import Article
 
 
 def index_page(request):
-	return render(request, "manager/index.html", {})
+	return render(request, "manager/index.html", {"article_list": Article.objects.all()})
 
 
 def dashboard_page(request):
@@ -31,10 +31,3 @@ def article_page_by_link(request, link):
 		return HttpResponse(status=404, content="404 Article not found")
 
 	return HttpResponse(article.get_article_page())
-
-
-def get_articles(request):
-	return JsonResponse({
-			"articles": [article.as_json() for article in Article.objects.all()]
-		}
-	)
