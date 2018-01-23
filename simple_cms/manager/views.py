@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from manager.models import Article, Template
-from manager.forms import NewTemplateForm
+from manager.forms import NewTemplateForm, NewArticleForm
 import re
 
 
@@ -12,6 +12,7 @@ def index_page(request):
 def dashboard_page(request):
 	return render(request, "manager/dashboard.html", {
 		"NewTemplateForm": NewTemplateForm(),
+		"NewArticleForm": NewArticleForm(),
 		"templates": Template.objects.filter(is_active=True),
 		"articles": Article.objects.all()
 	})
@@ -77,3 +78,32 @@ def deactivate_template(request):
 	template.save()
 
 	return HttpResponse(status=200)
+
+
+def add_article(request):
+	if not request.method == 'POST':
+		return HttpResponse(status=404)
+
+	new_article_form = NewArticleForm(request.POST)
+	print(new_article_form)
+	if not new_article_form.is_valid():
+		return HttpResponse(status=400, content="Invalid data received")
+
+	template = Template.objects.get(id=new_article_form["template"].data)
+	if not template.is_active:
+		return HttpResponse(status=400, content="Selected template is disabled")
+
+	article = Article.objects.create(
+		template = template,
+		title = new_article_form["title"].data,
+		link = new_article_form["link"].data
+	)
+
+	for area in template.extendable_areas.all():
+		article.content_areas.create(
+			area = area,
+			content = ""
+		)
+
+	article.save()
+	return redirect('/article/' + str(article.id) + '/')
