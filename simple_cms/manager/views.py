@@ -107,3 +107,22 @@ def add_article(request):
 
 	article.save()
 	return redirect('/article/' + str(article.id) + '/')
+
+
+def delete_article(request):
+	article_id = request.POST.get("article_id", "")
+
+	if article_id == "":
+		return HttpResponse(status=400, content="Missing mandatory data")
+
+	article = Article.objects.get(id=article_id)
+	for area in article.content_areas.all():
+		area.delete()
+
+	article.delete()
+
+	return HttpResponse(status=200)
+
+
+def edit_article_page(request, article_id):
+	pass

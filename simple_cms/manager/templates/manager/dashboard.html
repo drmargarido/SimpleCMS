@@ -118,7 +118,7 @@
 				                <td class="col-md-2">{{article.link}}</td>
 				                <td class="col-md-1">{{article.accesses_count}}</td>
 				                <td class="col-md-2">{{article.creation_date|date}}</td>
-				                <td class="col-md-1" style="text-align: center;"><a href="#"><span class="glyphicon glyphicon-remove"></span></a></td>
+				                <td class="col-md-1" style="text-align: center;"><a href="#" onclick="delete_article({{article.id}})"><span class="glyphicon glyphicon-remove"></span></a></td>
 				            </tr>
 				            {% endfor %}
 				        </tbody>
@@ -220,6 +220,22 @@
 			},
 		});
 	}
+
+
+	function delete_article(id){
+		$.ajax({
+			url: "/delete_article/",
+			type: "POST",
+			data: {
+				"csrfmiddlewaretoken": csrftoken,
+				"article_id": id
+			},
+			success: function(){
+				location.reload();
+			},
+		});
+	}
+
 
 	function set_visible_panel(name){
 		if(name === "TEMPLATES" && currently_visible_panel != "TEMPLATES"){
