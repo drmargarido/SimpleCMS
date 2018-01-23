@@ -59,6 +59,7 @@
 				                <th>Path</th>
 				                <th>Areas</th>
 				                <th>Creation Date</th>
+				                <th></th>
 				            </tr>
 				        </thead>
 				        <tbody>
@@ -70,6 +71,7 @@
 				                	{% for area in template.extendable_areas.all %}{{area.name}}{% if not forloop.last %}, {% endif %}{% endfor %}
 				                </td>
 				                <td>{{template.creation_date}}</td>
+				                <td><a href="#" onclick="deactivate_template({{template.id}})"><span class="glyphicon glyphicon-eye-close"></span></a></td>
 				            </tr>
 				            {% endfor %}
 				        </tbody>
@@ -121,5 +123,19 @@
 	$(document).ready(function() {
 	    $('#example').DataTable();
 	});
+
+	function deactivate_template(id){
+		$.ajax({
+			url: "/deactivate_template/",
+			type: "POST",
+			data: {
+				"csrfmiddlewaretoken": csrftoken,
+				"template_id": id
+			},
+			success: function(){
+				location.reload();
+			},
+		});
+	}
 </script>
 {% endblock %}

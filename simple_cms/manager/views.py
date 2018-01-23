@@ -12,7 +12,7 @@ def index_page(request):
 def dashboard_page(request):
 	return render(request, "manager/dashboard.html", {
 		"NewTemplateForm": NewTemplateForm(),
-		"templates": Template.objects.all()
+		"templates": Template.objects.filter(is_active=True)
 	})
 
 
@@ -62,4 +62,17 @@ def add_template(request):
 	template.save()
 	return redirect('/dashboard/')
 
+def deactivate_template(request):
+	template_id = request.POST.get("template_id", "")
 	
+	if template_id == "":
+		return HttpResponse(status=400)
+
+	template = Template.objects.get(id=template_id)
+	if not template.is_active:
+		return HttpResponse(status=400)
+
+	template.is_active = False
+	template.save()
+
+	return HttpResponse(status=200)

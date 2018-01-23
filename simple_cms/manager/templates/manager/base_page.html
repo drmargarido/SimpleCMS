@@ -55,6 +55,26 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/manager/js/jquery-3.2.1.min.js"></script>
     <script src="/static/manager/js/bootstrap.min.js"></script>
+    <!-- Include the Django CSRF Token for ajax requests -->
+    <script type="text/javascript">
+      function getCookie(cname) {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+              }
+          }
+          return "";
+      }
+
+      var csrftoken = getCookie('csrftoken');
+    </script>
     {% block script %}
     {% endblock %}
   </body>
