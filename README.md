@@ -13,7 +13,7 @@ Simple CMS is for you if:
 5. Use the articles defined links instead of the article id in the url mapping __[x]__
 6. Add initial page where all the registered articles are shown, with a link to their page __[x]__
 7. Present a simple UI to manage the templates creation, listing and disabling __[x]__
-8. Present a simple UI to manage the articles creation, update and removal __[ ]__
+8. Present a simple UI to manage the articles creation, update and removal __[x]__
 9. Present a simple UI to write the articles content by area __[ ]__
 10. Add simple image upload to the cms __[ ]__
 11. Add uploaded images selector to insert them in the articles writing area __[ ]__ 
@@ -46,32 +46,22 @@ Simple CMS is for you if:
 	python manage.py runserver
 ```
 
-## Managing the project
+## Functionalities
 
 * See the existing active templates
 * Add new template in the dashboards area
 * Disable a existing template
-
-At this moment there isn't a simple dashboard to manage the articles. They can be added using the django administration dashboard but that's error prone since the areas selection and creation can be a bit strange to select because of them behing relationships. 
-
-So some simple scripts have been added to the manage.py of the project in order to manage them. The article content can be wrote in the admin dashboards without any trouble.
-
+* See the existing articles
 * Add new article
-```sh
-	python manage.py create_article <template_name> <article_title> <article_link>
-```
-
 * Remove article
-```sh
-	python manage.py remove_article <article_id>
-```
+* Edit article areas content
 
 ## Workflow
 
 1. Create a html template using the django template tags
 2. Add the SimpleCMS tags in the final template with a name for each area [[ Area ]], [[ Other Area ]]
 3. Add the new template in the dashboards area
-4. Run the add new article command for each of the wanted articles using the created template name
+4. Add the new article in the dashboards area
 5. Go to the django admin dashboard at /admin/manager/
 6. Go to the ArticleAreas and edit the content of each of the wanted areas
 7. Check the created articles at 127.0.0.1:8000
