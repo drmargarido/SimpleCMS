@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from manager.models import Article, Template
 from manager.forms import NewTemplateForm
@@ -10,7 +10,10 @@ def index_page(request):
 
 
 def dashboard_page(request):
-	return render(request, "manager/dashboard.html", {"NewTemplateForm": NewTemplateForm()})
+	return render(request, "manager/dashboard.html", {
+		"NewTemplateForm": NewTemplateForm(),
+		"templates": Template.objects.all()
+	})
 
 
 def edit_article_page(request, article_id):
@@ -57,6 +60,6 @@ def add_template(request):
 			template.extendable_areas.create(name=area)
 
 	template.save()
-	return HttpResponse(status=200)
+	return redirect('/dashboard/')
 
 	
