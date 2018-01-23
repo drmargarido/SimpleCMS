@@ -82,6 +82,9 @@ class Article(models.Model):
 		template = template.replace("[[", "")
 		template = template.replace("]]", "")
 
+		self.accesses_count += 1
+		self.save()
+
 		return template
 
 	def __str__(self):

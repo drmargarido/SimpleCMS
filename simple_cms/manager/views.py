@@ -12,7 +12,8 @@ def index_page(request):
 def dashboard_page(request):
 	return render(request, "manager/dashboard.html", {
 		"NewTemplateForm": NewTemplateForm(),
-		"templates": Template.objects.filter(is_active=True)
+		"templates": Template.objects.filter(is_active=True),
+		"articles": Article.objects.all()
 	})
 
 
@@ -46,7 +47,7 @@ def add_template(request):
 
 	new_template_form = NewTemplateForm(request.POST)
 	if not new_template_form.is_valid():
-		return HttpResponse(status=400)
+		return HttpResponse(status=400, content="Invalid data received")
 	
 	# Create template	
 	template = Template.objects.create(
@@ -66,11 +67,11 @@ def deactivate_template(request):
 	template_id = request.POST.get("template_id", "")
 	
 	if template_id == "":
-		return HttpResponse(status=400)
+		return HttpResponse(status=400, content="Missing mandatory template_id")
 
 	template = Template.objects.get(id=template_id)
 	if not template.is_active:
-		return HttpResponse(status=400)
+		return HttpResponse(status=400, content="The received template is not active")
 
 	template.is_active = False
 	template.save()
