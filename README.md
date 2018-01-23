@@ -41,18 +41,20 @@ Simple CMS is for you if:
 	python manage.py createsuperuser
 ```
 
+5. Running the development server
+```sh
+	python manage.py runserver
+```
+
 ## Managing the project
 
-At this moment there isn't a simple dashboard to manage the articles and the templates. They can be added using the django administration dashboard but that's error prone since the areas selection and creation can be a bit strange to select because of them behing relationships. 
-
-So some simple scripts have been added to the manage.py of the project in order to manage the templates and articles. The article content can be wrote in the admin dashboards without any trouble.
-
+* See the existing active templates
 * Add new template in the dashboards area
+* Disable a existing template
 
-* Update an existing template
-```sh
-	python manage.py update_template <template_name>
-```
+At this moment there isn't a simple dashboard to manage the articles. They can be added using the django administration dashboard but that's error prone since the areas selection and creation can be a bit strange to select because of them behing relationships. 
+
+So some simple scripts have been added to the manage.py of the project in order to manage them. The article content can be wrote in the admin dashboards without any trouble.
 
 * Add new article
 ```sh
@@ -62,11 +64,6 @@ So some simple scripts have been added to the manage.py of the project in order 
 * Remove article
 ```sh
 	python manage.py remove_article <article_id>
-```
-
-* Run the development server
-```sh
-	python manage.py runserver
 ```
 
 ## Workflow
