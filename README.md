@@ -15,8 +15,9 @@ Simple CMS is for you if:
 7. Present a simple UI to manage the templates creation, listing and disabling __[x]__
 8. Present a simple UI to manage the articles creation, update and removal __[x]__
 9. Present a simple UI to write the articles content by area __[ ]__
-10. Add simple image upload to the cms __[ ]__
-11. Add uploaded images selector to insert them in the articles writing area __[ ]__ 
+10. Allow only to logged users to manage the templates and articles __[ ]__
+11. Add simple image upload to the cms __[ ]__
+12. Add uploaded images selector to insert them in the articles writing area __[ ]__ 
 
 ## Setup
 
@@ -48,10 +49,11 @@ Simple CMS is for you if:
 
 ## Functionalities
 
+* See the existing articles
 * See the existing active templates
 * Add new template in the dashboards area
 * Disable a existing template
-* See the existing articles
+* Manage the existing articles
 * Add new article
 * Remove article
 * Edit article areas content
