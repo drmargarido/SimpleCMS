@@ -47,10 +47,7 @@ At this moment there isn't a simple dashboard to manage the articles and the tem
 
 So some simple scripts have been added to the manage.py of the project in order to manage the templates and articles. The article content can be wrote in the admin dashboards without any trouble.
 
-* Add new template
-```sh
-	python manage.py create_template <template/template_name> <template_name>
-```
+* Add new template in the dashboards area
 
 * Update an existing template
 ```sh
@@ -76,11 +73,11 @@ So some simple scripts have been added to the manage.py of the project in order 
 
 1. Create a html template using the django template tags
 2. Add the SimpleCMS tags in the final template with a name for each area [[ Area ]], [[ Other Area ]]
-3. Run the script Add new template command
+3. Add the new template in the dashboards area
 4. Run the add new article command for each of the wanted articles using the created template name
 5. Go to the django admin dashboard at /admin/manager/
 6. Go to the ArticleAreas and edit the content of each of the wanted areas
-7. Access the article template by id like 127.0.0.1:8000/1/
+7. Check the created articles at 127.0.0.1:8000
 
 ## Deploy
 
