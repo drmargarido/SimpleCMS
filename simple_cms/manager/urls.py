@@ -1,9 +1,10 @@
 from django.urls import path
-from manager.views import index_page, article_page, article_page_by_link, dashboard_page
+from manager.views import index_page, article_page, article_page_by_link, dashboard_page, add_template
 
 urlpatterns = [
 	path("", index_page),
-	path("<int:article_id>/", article_page),
 	path("dashboard/", dashboard_page),
+	path("add_template/", add_template),
+	path("<int:article_id>/", article_page),
 	path("<str:link>/", article_page_by_link),
 ]

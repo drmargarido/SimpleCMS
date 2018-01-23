@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.template.loader import render_to_string
 import re
+from simple_cms.settings import BASE_DIR
 
 # Create your models here.
 
@@ -69,7 +70,7 @@ class Article(models.Model):
 
 	def get_article_page(self):
 		article_html = ""
-		template = render_to_string(self.template.file_path)
+		template = render_to_string(BASE_DIR + "/" + self.template.file_path)
 		for area in re.findall(DETECT_AREAS_REGEX, template):
 			try:
 				content_area = self.content_areas.get(area__name=area)
