@@ -89,7 +89,11 @@ def add_article(request):
 	if not new_article_form.is_valid():
 		return HttpResponse(status=400, content="Invalid data received")
 
-	template = Template.objects.get(id=new_article_form["template"].data)
+	try:
+		template = Template.objects.get(id=new_article_form["template"].data)
+	except Exception:
+		return HttpResponse(status=404, content="The received template does not exist")
+
 	if not template.is_active:
 		return HttpResponse(status=400, content="Selected template is disabled")
 
@@ -115,7 +119,11 @@ def delete_article(request):
 	if article_id == "":
 		return HttpResponse(status=400, content="Missing mandatory data")
 
-	article = Article.objects.get(id=article_id)
+	try:
+		article = Article.objects.get(id=article_id)
+	except Exception:
+		return HttpResponse(status=404, content="The received article does not exist")
+
 	for area in article.content_areas.all():
 		area.delete()
 
@@ -125,4 +133,9 @@ def delete_article(request):
 
 
 def edit_article_page(request, article_id):
-	pass
+	try:
+		article = Article.objects.get(id=article_id)
+	except Exception:
+		return HttpResponse(status=404, content="The received article does not exist")
+
+	return render(request, "manager/article.html", {"article": article})

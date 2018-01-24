@@ -1,0 +1,28 @@
+{% extends "manager/base_page.html" %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+	
+	<h1>{{article.title}}</h1>
+
+	{% for area in article.content_areas.all %}
+
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<span class="panel_title">Area<span>
+		</div>
+		
+		<div class="panel-body">
+
+		</div>
+	</div>
+
+	{% endfor %}
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}
