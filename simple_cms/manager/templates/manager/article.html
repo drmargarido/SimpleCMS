@@ -2,11 +2,24 @@
 
 {% block header %}
 
-<style type="text/css">
-	h1 {
-		text-align: center;
-	}
-</style>
+	<style type="text/css">
+		h1 {
+			text-align: center;
+		}
+
+		.save {
+			position: absolute;
+			right: 1.5%;
+			bottom: 7%;
+			background-color: #DFDFDF;
+			display: none;
+		}
+
+		.panel-heading {
+			position: relative;
+		}
+
+	</style>
 
 {% endblock %}
 
@@ -19,11 +32,12 @@
 	<div class="panel panel-default">
 		<!-- Default panel contents -->
 		<div class="panel-heading">
-			<span class="panel_title"><a href="#" data-toggle="collapse" data-target="#content_area_{{area.id}}">{{area.area.name}}</a><span>
+			<span class="panel_title"><a href="#" data-toggle="collapse" data-target="#content_area_{{area.id}}_panel">{{area.area.name}}</a><span>
+			<button id="save_area_{{area.id}}" class="btn btn-default save" onclick="save_content({{area.id}})"><span class="glyphicon glyphicon-floppy-disk"></span></button>
 		</div>
 		
-		<div id="content_area_{{area.id}}" class="panel-body collapse">
-			{{area.content}}
+		<div id="content_area_{{area.id}}_panel" class="panel-body collapse">
+			<textarea id="content_area_{{area.id}}" rows=10 class="col-md-12">{{area.content}}</textarea>
 		</div>
 	</div>
 
@@ -32,4 +46,22 @@
 {% endblock %}
 
 {% block script %}
+
+	<script type="text/javascript">
+
+		function save_content(id){
+			$("#save_area_" + id).css("display", "none");
+		}
+
+		// Register listeners to trigger the display of the save button when the text is changed
+		{% for area in article.content_areas.all %}
+		
+		$("#content_area_{{area.id}}").on('keyup', function() {
+			$("#save_area_{{area.id}}").css("display", "inline");
+		});
+		
+		{% endfor %}
+		
+	</script>
+
 {% endblock %}
