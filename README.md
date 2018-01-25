@@ -14,10 +14,9 @@ Simple CMS is for you if:
 6. Add initial page where all the registered articles are shown, with a link to their page __[x]__
 7. Present a simple UI to manage the templates creation, listing and disabling __[x]__
 8. Present a simple UI to manage the articles creation, update and removal __[x]__
-9. Present a simple UI to write the articles content by area __[ ]__
+9. Present a simple UI to write the articles content by area __[x]__
 10. Allow only to logged users to manage the templates and articles __[ ]__
-11. Add simple image upload to the cms __[ ]__
-12. Add uploaded images selector to insert them in the articles writing area __[ ]__ 
+11. Present screenshots of the platform so the features will be more easily understood __[ ]__ 
 
 ## Setup
 
@@ -64,9 +63,9 @@ Simple CMS is for you if:
 2. Add the SimpleCMS tags in the final template with a name for each area [[ Area ]], [[ Other Area ]]
 3. Add the new template in the dashboards area
 4. Add the new article in the dashboards area
-5. Go to the django admin dashboard at /admin/manager/
-6. Go to the ArticleAreas and edit the content of each of the wanted areas
-7. Check the created articles at 127.0.0.1:8000
+5. Select the article you want to edit
+6. Write in the content areas and save you work
+7. Follow the article link to see the final result! :)
 
 ## Deploy
 

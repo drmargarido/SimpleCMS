@@ -3,7 +3,7 @@
 {% block header %}
 
 	<style type="text/css">
-		h1 {
+		h1,h3 {
 			text-align: center;
 		}
 
@@ -26,6 +26,7 @@
 {% block body %}
 	
 	<h1>{{article.title}}</h1>
+	<h3>Link: <a href="/{{article.link}}/">{{article.link}}</a></h3>
 
 	{% for area in article.content_areas.all %}
 
