@@ -25,9 +25,13 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="/">SimpleCMS</a>
         </div>
+        
+        {% if user.is_authenticated %}
         <div class="navbar-collapse collapse">
          	<a id="dashboard" href="/dashboard/">Management Dashboard</a>
         </div>
+        {% endif %}
+
       </div>
     </nav>
 

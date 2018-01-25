@@ -3,12 +3,14 @@ from django.http import HttpResponse, JsonResponse
 from manager.models import Article, Template, ArticleArea
 from manager.forms import NewTemplateForm, NewArticleForm
 import re
+from django.contrib.auth.decorators import login_required
 
 
 def index_page(request):
 	return render(request, "manager/index.html", {"article_list": Article.objects.all()})
 
 
+@login_required
 def dashboard_page(request):
 	return render(request, "manager/dashboard.html", {
 		"NewTemplateForm": NewTemplateForm(),
@@ -18,6 +20,7 @@ def dashboard_page(request):
 	})
 
 
+@login_required
 def edit_article_page(request, article_id):
 	return render(request, "manager/article.html", {})
 
@@ -42,6 +45,7 @@ def article_page_by_link(request, link):
 
 DETECT_AREAS_REGEX = re.compile("\[\[\s*([0-9a-zA-Z_\-]+)\s*\]\]", re.DOTALL)
 
+@login_required
 def add_template(request):
 	if not request.method == 'POST':
 		return HttpResponse(status=400)
@@ -64,6 +68,8 @@ def add_template(request):
 	template.save()
 	return redirect('/dashboard/')
 
+
+@login_required
 def deactivate_template(request):
 	template_id = request.POST.get("template_id", "")
 	
@@ -80,12 +86,12 @@ def deactivate_template(request):
 	return HttpResponse(status=200)
 
 
+@login_required
 def add_article(request):
 	if not request.method == 'POST':
 		return HttpResponse(status=400)
 
 	new_article_form = NewArticleForm(request.POST)
-	print(new_article_form)
 	if not new_article_form.is_valid():
 		return HttpResponse(status=400, content="Invalid data received")
 
@@ -113,6 +119,7 @@ def add_article(request):
 	return redirect('/article/' + str(article.id) + '/')
 
 
+@login_required
 def delete_article(request):
 	article_id = request.POST.get("article_id", "")
 
@@ -132,6 +139,7 @@ def delete_article(request):
 	return HttpResponse(status=200)
 
 
+@login_required
 def edit_article_page(request, article_id):
 	try:
 		article = Article.objects.get(id=article_id)
@@ -141,6 +149,7 @@ def edit_article_page(request, article_id):
 	return render(request, "manager/article.html", {"article": article})
 
 
+@login_required
 def save_content(request):
 	content_area_id = request.POST.get("content_area_id", "")
 	content = request.POST.get("content", "")
