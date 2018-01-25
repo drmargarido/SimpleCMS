@@ -50,7 +50,18 @@
 	<script type="text/javascript">
 
 		function save_content(id){
-			$("#save_area_" + id).css("display", "none");
+			$.ajax({
+				url: "/save_content/",
+				type: "POST",
+				data: {
+					"csrfmiddlewaretoken": csrftoken,
+					"content_area_id": id,
+					"content": $("#content_area_" + id).val()
+				},
+				success: function(){
+					$("#save_area_" + id).css("display", "none");
+				},
+			});
 		}
 
 		// Register listeners to trigger the display of the save button when the text is changed

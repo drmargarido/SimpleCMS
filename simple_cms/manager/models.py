@@ -21,6 +21,7 @@ class Area(models.Model):
 			"name": self.name
 		}
 
+
 class Template(models.Model):
 	name = models.CharField(max_length=150, unique=True)
 	extendable_areas = models.ManyToManyField(Area)
@@ -42,6 +43,7 @@ class Template(models.Model):
 			"areas": [area.as_json() for area in self.extendable_areas.all()]
 		}
 
+
 class ArticleArea(models.Model):
 	area = models.ForeignKey(Area, on_delete=models.SET_NULL, null=True)
 	content = models.TextField()
@@ -58,6 +60,7 @@ class ArticleArea(models.Model):
 			"content": self.content,
 			"area": self.area.as_json()
 		}
+
 
 DETECT_AREAS_REGEX = re.compile("\[\[\s*([0-9a-zA-Z_\-]+)\s*\]\]", re.DOTALL)
 
