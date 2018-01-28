@@ -16,46 +16,68 @@ Simple CMS is for you if:
 8. Present a simple UI to manage the articles creation, update and removal __[x]__
 9. Present a simple UI to write the articles content by area __[x]__
 10. Allow only to logged users to manage the templates and articles __[x]__
-11. Present screenshots of the platform so the features will be more easily understood __[ ]__ 
+11. Present screenshots of the platform so the features will be more easily understood __[x]__ 
 
 ## Setup
 
 1. Clone this repo
 ```sh
-	git clone https://github.com/drmargarido/simple_csm.git
+	git clone https://github.com/drmargarido/SimpleCMS.git
 ```
 
-2. Create a new app with the django command or just edit the manager app
-```sh
-	python manage.py startapp <app_name>
-``` 
-
-3. Make the initial migrations to setup the database
+2. Make the initial migrations to setup the database
 ```sh
 	python manage.py makemigrations
 	python manage.py migrate
 ```
 
-4. Create an admin to manage and write the articles content
+3. Create an admin to manage and write the articles content
 ```sh
 	python manage.py createsuperuser
 ```
 
-5. Running the development server
+4. Running the development server
 ```sh
 	python manage.py runserver
 ```
 
-## Functionalities
+5. Edit the manager app to fit your needs
+	* New templates should be added in the manager/templates/manager folder, or the folder should be changed
+	* The initial index.html page is extremely simple, if you want the visitors to have a better page, rewrite the index.html page, or edit the urls mapping.
+
+6. If you have interest in more features create a issue with them, contact me drmargarido@gmail.com or implement it and send a pull request :) .
+
+## Features
+
+### Regular User 
 
 * See the existing articles
-* See the existing active templates
+![Articles List](/readme_images/visitor_article_list.png)
+
+* Go to each article page
+![Article Page](/readme_images/article_page.png)
+
+* Login using the django admin dashboard
+![Article Page](/readme_images/login.png)
+
+### Logged User
+
+* See the existing active templates and disable them if wanted
+![Templates List](/readme_images/list_templates.png)
+
 * Add new template in the dashboards area
-* Disable a existing template
-* Manage the existing articles
+![Add Template](/readme_images/add_new_template.png)
+![Template Example](/readme_images/example_template.png)
+
+* See the existing articles, acess count and remove article if wanted
+![Articles List](/readme_images/list_articles.png)
+
 * Add new article
-* Remove article
+![Add Article](/readme_images/add_new_article.png)
+
 * Edit article areas content
+![Edit Article Page](/readme_images/edit_article_page.png)
+![Edit Content](/readme_images/edit_article_content.png)
 
 ## Workflow
 
